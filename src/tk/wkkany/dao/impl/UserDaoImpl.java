@@ -7,7 +7,6 @@ import tk.wkkany.util.JDBCUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
-
 public class UserDaoImpl implements UserDao {
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
     @Override
@@ -18,5 +17,18 @@ public class UserDaoImpl implements UserDao {
         List<User> users =  template.query(sql, new BeanPropertyRowMapper<User>(User.class));
 
         return users;
+    }
+
+    @Override
+    public User findUserByUsernameAndPassword(String username, String password) {
+        try {
+            String sql = "select * from user where username = ? and password = ?";
+            User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username, password);
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }
