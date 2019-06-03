@@ -10,4 +10,11 @@ public interface UserDao {
     public List<User> findAll();
 
     User findUserByUsernameAndPassword(String username, String password);
+
+    void add(User user);
+
+    void delete(int id);
+
+    User findById(int i);
+    void  update(User user);
 }

@@ -1,8 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <!DOCTYPE html>
 <!-- 网页使用的语言 -->
 <html lang="zh-CN">
     <head>
-    	<base href="<%=basePath%>"/>
         <!-- 指定字符集 -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +17,11 @@
     <body>
         <div class="container" style="width: 400px;">
         <h3 style="text-align: center;">修改联系人</h3>
-        <form action="" method="post">
+        <form action="${pageContext.request.contextPath}/updateUserServlet" method="post">
+            <input type="hidden"name="id"value="${user.id}">
           <div class="form-group">
             <label for="name">姓名：</label>
-            <input type="text" class="form-control" id="name" name="name"  readonly="readonly" placeholder="请输入姓名" />
+            <input type="text" class="form-control" id="name" name="name"  value="${user.name}" readonly="readonly" placeholder="请输入姓名" />
           </div>
 
           <div class="form-group">
@@ -31,7 +32,7 @@
 
           <div class="form-group">
             <label for="age">年龄：</label>
-            <input type="text" class="form-control" id="age"  name="age" placeholder="请输入年龄" />
+            <input type="text" class="form-control" id="age"   value="${user.age}"name="age" placeholder="请输入年龄" />
           </div>
 
           <div class="form-group">
@@ -45,12 +46,12 @@
 
           <div class="form-group">
             <label for="qq">QQ：</label>
-            <input type="text" class="form-control"id="qq" name="qq" placeholder="请输入QQ号码"/>
+            <input type="text" class="form-control"id="qq" name="qq"  value="${user.qq}"placeholder="请输入QQ号码"/>
           </div>
 
           <div class="form-group">
             <label for="email">Email：</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱地址"/>
+            <input type="text" class="form-control" id="email" name="email"  value="${user.email}"placeholder="请输入邮箱地址"/>
           </div>
 
              <div class="form-group" style="text-align: center">

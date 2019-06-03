@@ -28,6 +28,17 @@
             text-align: center;
         }
     </style>
+    <script>
+        function deleteUser(id){
+            //用户安全提示
+            if(confirm("您确定要删除吗？")){
+                //访问路径
+                location.href="${pageContext.request.contextPath}/delUserServlet?id="+id;
+            }
+        }
+
+
+    </script>
 </head>
 <body>
 <div  class="container">
@@ -52,7 +63,7 @@
     </div>
 
     <div style="float: right;margin: 5px" >
-        <a class="btn btn-primary" href="add.html">添加联系人</a>
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">添加联系人</a>
         <a class="btn btn-primary" href="add.html">删除联系人</a>
 
     </div>
@@ -71,7 +82,7 @@
 
         <c:forEach items="${users}" var="user" varStatus="s">
             <tr>
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" name="uid" value="${user.id}"></td>
                 <td>${s.count}</td>
                 <td>${user.name}</td>
                 <td>${user.gender}</td>
@@ -79,7 +90,8 @@
                 <td>${user.address}</td>
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="">删除</a></td>
+                <td><a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/findUserServlet?id=${user.id }">修改</a>&nbsp;
+                    <a class="btn btn-default btn-sm"  href="javascript:deleteUser(${user.id});">删除</a></td>
             </tr>
 
         </c:forEach>
@@ -107,6 +119,7 @@
                 </li>
                 <span style="font-size: 25px;margin-left: 5px">共16条数据，共4页</span>
             </ul>
+            </nav>
     </div>
 </div>
 
